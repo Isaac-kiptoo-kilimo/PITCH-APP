@@ -112,4 +112,46 @@
     display: block;
     padding: 10px;
   }
+
+  .custom-item a:hover{
+    color: rgb(168, 0, 28);
+  }
+  
+  .comment-header-left{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .bg-none{
+    background-color: none !important;
+    background: none;
+  }
+  
+  .custom-input{
+    border: 1px solid rgb(255, 255, 255);
+    /* border-radius: 10px; */
+  }
+  .custom-input:focus{
+    outline: none;
+    background-color: none !important;
+    background: none;
+  }
+  
+  .comment-header-left img{
+    width: 100%;
+  }
+  
+  .custom-btn, .custom-btn:hover{
+    background-color: rgb(168, 0, 28);
+    color: white;
+    border: none;
+    padding: 16px 25px;
+    font-size: 18px;
+  }
+  
   
