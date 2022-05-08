@@ -65,4 +65,51 @@
     font-size: 18px;
     line-height: 1.5rem;
   }
+  .action{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 25px;
+    border-radius: 10px;
+    background-color: rgba(7, 6, 36, 0.479);
+    font-size: 22px;
+    line-height: 1.5rem;
+  }
+  
+  .action:not(:first-child){
+    margin-left: 20px;
+  }
+  
+  .action button, .action button:hover{
+    color: white;
+  }
+  
+  .custom-navbar{
+    background-color: rgb(7, 6, 36);
+  }
+  
+  .custom-nav-link{
+    color: white !important;
+    /* font-size: 18px; */
+  }
+  
+  .nav-link.active{
+    color: rgb(168, 0, 28) !important;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  
+  .custom-item{
+    line-height: 1.5rem;
+    background-color: none;
+    background: none;
+    padding: 0 !important;
+  }
+  
+  .custom-item a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+  }
   
