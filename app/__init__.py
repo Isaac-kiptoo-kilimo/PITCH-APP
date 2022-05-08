@@ -1,7 +1,4 @@
-# from distutils.command.config import config
-# from ensurepip import bootstrap
-# from ssl import Options
-# from click import option
+
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from config import config_options
