@@ -6,6 +6,15 @@ from . import main
 def index():
     return render_template('pages/index.html')
 
+@main.route('/pitches/categories/<string:category_id>')
+def category_view(category_id):
+  return render_template('pages/category.html')
+
+
+@main.route('/pitches/view/<string:pitch_id>/')
+def pitch_view(pitch_id):
+  
+  return render_template('pages/pitchview.html')
 
 
 @main.route('/auth/login', methods=['GET','POST'])
