@@ -1,0 +1,11 @@
+:root{
+    --bg: linear-gradient(rgb(11, 10, 73, 0.8), rgba(11, 10, 73, 0.8)), url(https://images.pexels.com/photos/1420440/pexels-photo-1420440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  }
+  
+  body{
+    background: var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
