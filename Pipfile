@@ -8,6 +8,9 @@ flask = "*"
 python-dotenv = "*"
 flask-migrate = "*"
 flask-bootstrap = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+flask-login = "*"
 
 [dev-packages]
 
