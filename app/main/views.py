@@ -8,7 +8,11 @@ from flask_login import login_user, current_user, logout_user, login_required
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-    
+categories=[
+  'Technology',
+  'learning',
+  'Business'
+]  
 
 def make_pitches(pitches):
 
@@ -161,7 +165,7 @@ def signup():
       return redirect(url_for('main.login'))
     else:
       flash('Passwords do not match', 'danger')
-    return redirect(url_for('main.signup'))
+      return redirect(url_for('main.signup'))
   return render_template('pages/auth/signup.html', title='Sign Up')
 
 @main.route('/auth/profile', methods=['GET','POST'])

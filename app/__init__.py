@@ -27,7 +27,7 @@ def create_app(config_name):
     # db.create_all()
     db.init_app(app)
     # login_manager = LoginManager(app)
-    # login_manager.init_app(app)
+    login_manager.init_app(app)
     bootstrap.init_app(app)
 
     # Registering the blueprint
