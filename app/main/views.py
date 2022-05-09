@@ -4,6 +4,12 @@ from .. import db, login_manager
 from ..models import User, Pitch,Comment, Category
 from flask_login import login_user, current_user, logout_user, login_required
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+    
+
 def make_pitches(pitches):
 
   new_pitches = []
@@ -22,6 +28,7 @@ def make_pitches(pitches):
       'comments': len(comments)
     })
   return new_pitches
+
 
 @main.route('/')
 def index():

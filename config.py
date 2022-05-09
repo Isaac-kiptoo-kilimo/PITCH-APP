@@ -1,10 +1,11 @@
 
 import os
+from dotenv import load_dotenv,find_dotenv
 
-
+load_dotenv(find_dotenv())
 
 class Config:
-    SQLAlchemy_DATABASE_URI=os.getenv('DATABASE_URL')
+    SQLAlchemy_DATABASE_URI=os.getenv('SQLAlchemy_DATABASE_URL')
     DEBUG=os.getenv('DEBUG')
 
 class ProdConfig(Config):
