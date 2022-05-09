@@ -83,6 +83,32 @@ def add_comment(pitch_id):
       return redirect(url_for('main.index'))
   return redirect(url_for('main.pitch_view', pitch_id=pitch.id))
 
+@main.route('/pitches/view/<string:pitch_id>/upvote/', methods=['GET', 'POST'])
+@login_required
+def upvote_pitch(pitch_id):
+  pitch = Pitch.query.filter_by(id=pitch_id).first()
+  if pitch:
+    pitch.upvotes += 1
+    db.session.commit()
+    flash('Pitch upvoted', 'success')
+    return redirect(request.referrer)
+  else:
+    flash('Pitch not found', 'warning')
+    return redirect(url_for('main.index'))
+
+    
+@main.route('/pitches/view/<string:pitch_id>/downvote/', methods=['GET', 'POST'])
+@login_required
+def downvote_pitch(pitch_id):
+  pitch = Pitch.query.filter_by(id=pitch_id).first()
+  if pitch:
+    pitch.downvotes -= 1
+    db.session.commit()
+    flash('Pitch downvoted', 'success')
+    return redirect(request.referrer)
+  else:
+    flash('Pitch not found', 'warning')
+    return redirect(url_for('main.index'))
 
 @main.route('/auth/login', methods=['GET','POST'])
 def login():
