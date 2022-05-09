@@ -96,7 +96,7 @@ def upvote_pitch(pitch_id):
     flash('Pitch not found', 'warning')
     return redirect(url_for('main.index'))
 
-    
+
 @main.route('/pitches/view/<string:pitch_id>/downvote/', methods=['GET', 'POST'])
 @login_required
 def downvote_pitch(pitch_id):
@@ -110,30 +110,49 @@ def downvote_pitch(pitch_id):
     flash('Pitch not found', 'warning')
     return redirect(url_for('main.index'))
 
+@main.route('/pitches/new/', methods=['GET','POST'])
+@login_required
+def new_pitch():
+  categories = Category.query.order_by(Category.id.asc()).all()
+  if request.method == 'POST':
+    pitch = Pitch(title=request.form['title'], content=request.form['content'], category_id=request.form['category'], user_id=current_user.id)
+    db.session.add(pitch)
+    db.session.commit()
+    flash('Pitch created successfully', 'success')
+    return redirect(url_for('main.index'))
+  
+  return render_template('pages/pitches/addpitch.html', categories=categories)
+
 @main.route('/auth/login', methods=['GET','POST'])
 def login():
-  # form = LoginForm()
-  # if form.validate_on_submit():
-  #   user = User.query.filter_by(email=form.email.data).first()
-  #   if user and bcrypt.check_password_hash(user.password, form.password.data):
-  #     login_user(user, remember=form.remember.data)
-  #     next_page = request.args.get('next')
-  #     return redirect(next_page or url_for('main.index'))
-  #   else:
-  #     flash('Login Unsuccessful. Please check email and password', 'danger')
+  if request.method == 'POST':
+      username = request.form['username']
+      password = request.form['password']
+      user = User.query.filter_by(username=username).first()
+      if user and user.verify_password(password):
+        login_user(user)
+        flash('User Logged in', 'success')
+        return redirect(url_for('main.index'))
+      else:
+        return redirect(url_for('main.login'))
+        flash('Login failed', 'danger')
   return render_template('pages/auth/login.html', title='Login')
 
 
 @main.route('/auth/signup', methods=['GET','POST'])
 def signup():
-  # form = SignupForm()
-  # if form.validate_on_submit():
-  #   hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-  #   user = User(username=form.username.data,
-  #               email=form.email.data,
-  #               password=hashed_password)
-  #   db.session.add(user)
-  #   db.session.commit()
-  #   flash('Your account has been created! You are now able to log in', 'success')
-  #   return redirect(url_for('main.login'))
+  if request.method == 'POST':
+    if request.form['password'] == request.form['rpassword']:
+      new_user = User(username=request.form['username'],
+                      email=request.form['email'],
+                      fullname=request.form['fullname'],
+                      bio=request.form['bio'],
+                      password=request.form['password'])
+      db.session.add(new_user)
+      db.session.commit()
+      flash('User created successfully', 'success')
+      return redirect(url_for('main.login'))
+    else:
+      flash('Passwords do not match', 'danger')
+    return redirect(url_for('main.signup'))
   return render_template('pages/auth/signup.html', title='Sign Up')
