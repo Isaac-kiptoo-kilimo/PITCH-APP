@@ -1,10 +1,35 @@
 from flask import render_template
 from . import main
+from .. import db, login_manager
+from ..models import User, Pitch,Comment, Category
+from flask_login import login_user, current_user, logout_user, login_required
 
+def make_pitches(pitches):
+
+  new_pitches = []
+  for pitch in pitches:
+    user = User.query.filter_by(id=pitch.user_id).first()
+    category = Category.query.filter_by(id=pitch.category_id).first()
+    comments = Comment.query.filter_by(pitch_id=pitch.id).all()
+    new_pitches.append({
+      'id': pitch.id,
+      'title': pitch.title,
+      'content': pitch.content,
+      'category': category,
+      'user': user,
+      'upvotes': pitch.upvotes,
+      'downvotes': pitch.downvotes,
+      'comments': len(comments)
+    })
+  return new_pitches
 
 @main.route('/')
 def index():
-    return render_template('pages/index.html')
+  categories = Category.query.order_by(Category.id.asc()).all()
+  pitches = Pitch.query.order_by(Pitch.id.desc()).all()
+  new_pitches = make_pitches(pitches)
+  return render_template('pages/index.html',
+  categories=categories, pitches=new_pitches)
 
 @main.route('/pitches/categories/<string:category_id>')
 def category_view(category_id):
