@@ -5,13 +5,15 @@ from dotenv import load_dotenv,find_dotenv
 load_dotenv(find_dotenv())
 
 class Config:
-    SQLAlchemy_DATABASE_URI=os.getenv('SQLAlchemy_DATABASE_URL')
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:isaac@localhost/pitches'
     DEBUG=os.getenv('DEBUG')
 
 class ProdConfig(Config):
-    DEBUG = False
+    
+    pass
 
 class DevConfig(Config):
+   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:isaac@localhost/pitches'
    DEBUG = True
 
 
