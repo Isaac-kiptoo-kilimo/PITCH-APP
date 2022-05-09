@@ -156,3 +156,31 @@ def signup():
       flash('Passwords do not match', 'danger')
     return redirect(url_for('main.signup'))
   return render_template('pages/auth/signup.html', title='Sign Up')
+
+@main.route('/auth/profile', methods=['GET','POST'])
+@login_required
+def profile():
+  my_pitches = Pitch.query.filter_by(user_id=current_user.id).all()
+  new_pitches = make_pitches(my_pitches)
+  return render_template('pages/auth/profile.html', title='My Profile', pitches=new_pitches)
+
+
+@main.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))
+
+
+@main.route('/pitches/categories/new/', methods=['GET','POST'])
+@login_required
+def new_category():
+  if request.method == 'POST':
+    new_category = Category(name=request.form['name'])
+    try:
+      db.session.add(new_category)
+      db.session.commit()
+      flash('Category created successfully', 'success') 
+    except:
+      flash('Category already exists', 'danger')
+  return render_template('pages/pitches/addcategory.html', title='New Category')
