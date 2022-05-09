@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 flask-login = "*"
 flask-script = "*"
 psycopg2 = "==2.8.6"
+flask-mail = "*"
 
 [dev-packages]
 

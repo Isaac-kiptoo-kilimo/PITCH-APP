@@ -1,14 +1,14 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+{% for pitch in pitches %}
 <div class="custom-banner">
   <div class="container py-2 py-md-5">
-    <h1 class="text-center">Isaac Kiptoo</h1>
+    <h1 class="text-center">{{pitch.user.fullname}}</h1>
     <p class="text-center">And some bio here</p>
   </div>
 </div>
-
+{% endfor %}
 <div class="container my-4 py-5">
 
   <div class="row">

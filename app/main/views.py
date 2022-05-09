@@ -72,7 +72,7 @@ def pitch_view(pitch_id):
       })
     user = User.query.filter_by(id=pitch.user_id).first()
   
-    return render_template('pages/pitchview.html',pitch=pitch, comments=new_comments, user=user)
+    return render_template('pages/pitches/pitchview.html',pitch=pitch, comments=new_comments, user=user)
   else:
     flash('Pitch not found', 'warning')
     return redirect(url_for('main.index'))
@@ -105,7 +105,7 @@ def upvote_pitch(pitch_id):
     return redirect(request.referrer)
   else:
     flash('Pitch not found', 'warning')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('pitchli.index'))
 
 
 @main.route('/pitches/view/<string:pitch_id>/downvote/', methods=['GET', 'POST'])
