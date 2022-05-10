@@ -43,67 +43,6 @@
       <div class="custom-card p-2 position-relative mb-3">
         <h4 class="text-center p-0 m-0">All Pitches</h4>
       </div>
-      {% for pitch in pitches %}
-<!-- <div class="custom-card p-2 position-relative mb-4">
-
-  <div class="custom-card-header">
-    <p class="m-0 p-0 text-capitalize">
-      {{pitch.category.name}}
-    </p>
-    <h3 class="">{{pitch.title}}</h3>
-  </div>
-  <div class="custom-card-body">
-    <p>
-      {{pitch.content}}
-    </p>
-    <div>
-      By {{pitch.user.fullname}}
-    </div>
-  </div>
-  <div class="custom-card-footer d-flex mt-3">
-    
-    <div class="action">
-      {% if comment  %}
-      <a href="{{ url_for('main.login') }}">
-        <button class="btn outline-none border-none shadow-none">
-          <span>
-            <i class="fa-solid fa-comment"></i>
-          </span>
-          <span class="ms-3">
-            {{pitch.comments}}
-          </span>
-        </button>
-      </a>
-      {% endif %}
-    </div>
-    <div class="action">
-      <a href="{{ url_for('main.login') }}">
-        <button class="btn outline-none border-none shadow-none">
-          <span>
-            <i class="fa-solid fa-angle-up"></i>
-          </span>
-          <span class="ms-3">
-            {{pitch.upvotes}}
-          </span>
-        </button>
-      </a>
-    </div>
-    <div class="action">
-      <a href="{{ url_for('main.login') }}">
-        <button class="btn outline-none border-none shadow-none">
-          <span>
-            <i class="fa-solid fa-angle-down"></i>
-          </span>
-          <span class="ms-3">
-            {{pitch.downvotes}}
-          </span>
-        </button>
-      </a>
-    </div>
-  </div>
-
-</div>
-{% endfor %} -->
 
     
       <div class="">
