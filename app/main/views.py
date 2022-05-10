@@ -105,7 +105,7 @@ def upvote_pitch(pitch_id):
     return redirect(request.referrer)
   else:
     flash('Pitch not found', 'warning')
-    return redirect(url_for('pitchli.index'))
+    return redirect(url_for('pitchlist.index'))
 
 
 @main.route('/pitches/view/<string:pitch_id>/downvote/', methods=['GET', 'POST'])
