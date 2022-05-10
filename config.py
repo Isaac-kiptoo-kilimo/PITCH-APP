@@ -15,7 +15,7 @@ class Config:
     DEBUG=os.getenv('DEBUG')
 
 class ProdConfig(Config):
-    
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:isaac@localhost/pitches'
     pass
 
 class DevConfig(Config):
