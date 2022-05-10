@@ -30,7 +30,7 @@ def create_app(config_name):
     # login_manager = LoginManager(app)
     login_manager.init_app(app)
     bootstrap.init_app(app)
-    mail.init_app(app)
+    # mail.init_app(app)
 
     # Registering the blueprint
     from .main import main as main_blueprint
