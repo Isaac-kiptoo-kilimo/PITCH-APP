@@ -3,7 +3,7 @@ from . import main
 from .. import db, login_manager
 from ..models import User, Pitch,Comment, Category
 from flask_login import login_user, current_user, logout_user, login_required
-
+from ..email import mail_message
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -161,6 +161,7 @@ def signup():
                       password=request.form['password'])
       db.session.add(new_user)
       db.session.commit()
+      mail_message("Welcome to watchlist","email/welcome_user",new_user.email,user=new_user)
       flash('User created successfully', 'success')
       return redirect(url_for('main.login'))
     else:
