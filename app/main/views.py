@@ -8,11 +8,7 @@ from ..email import mail_message
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-categories=[
-  'Technology',
-  'learning',
-  'Business'
-]  
+
 
 def make_pitches(pitches):
 
@@ -161,7 +157,7 @@ def signup():
                       password=request.form['password'])
       db.session.add(new_user)
       db.session.commit()
-      mail_message("Welcome to watchlist","email/welcome_user",new_user.email,user=new_user)
+      mail_message("Welcome to pitches app","email/welcome_user",new_user.email,user=new_user)
       flash('User created successfully', 'success')
       return redirect(url_for('main.login'))
     else:

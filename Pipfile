@@ -16,6 +16,7 @@ psycopg2 = "==2.8.6"
 flask-mail = "*"
 flask-wtf = "*"
 email-validator = "*"
+gunicorn = "*"
 
 [dev-packages]
 
